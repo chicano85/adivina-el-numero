@@ -14,8 +14,8 @@ const random = getRandomNumber(100);
 console.log(`Mi número aleatorio es ${random}`);
 
 function proofclick() {
-  debugger;
-  const numberValue = number.value;
+  const numberValue = parseInt(number.value);
+
   if (numberValue > random) {
     console.log("Demasiado alto");
   } else if (numberValue < random) {
