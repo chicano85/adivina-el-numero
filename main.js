@@ -11,20 +11,36 @@ function getRandomNumber(max) {
 
 const random = getRandomNumber(100);
 
-console.log(`Mi número aleatorio es ${random}`);
+let attempt = 0;
+
+function inner(text) {
+  return (track.innerHTML = text);
+}
 
 function proofclick() {
   const numberValue = parseInt(number.value);
+  // Para hacer que number.Value esté en 0 y 100. Eso debe ser lo primero.
 
-  if (numberValue > random) {
-    console.log("Demasiado alto");
-  } else if (numberValue < random) {
-    console.log("Demasiado bajo");
+  if (numberValue > random && numberValue <= 100) {
+    inner("Demasiado alto");
+  } else if (numberValue < random && numberValue >= 1) {
+    inner("Demasiado bajo");
   } else if (numberValue === random) {
-    console.log("Has ganado campeona");
+    inner("Has ganado campeona");
+    button.removeEventListener("click", proofclick);
   } else {
-    console.log("El número debe estar entre 1 y 100.");
+    inner("El número debe estar entre 1 y 100.");
   }
 }
 
 button.addEventListener("click", proofclick);
+
+function counter() {
+  attempt++;
+  tries.innerHTML = "Número de intentos: " + attempt;
+}
+function handler() {
+  proofclick();
+  counter();
+}
+button.addEventListener("click", handler);
